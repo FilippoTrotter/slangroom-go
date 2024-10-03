@@ -1,7 +1,5 @@
 
 
-## 📝 Site docs
+## 📝 Slangroom-go
 
-```bash
-go install golang.org/x/pkgsite/cmd/pkgsite@latest && pkgsite
-```
+https://dyne.org/slangroom embedded in GO
