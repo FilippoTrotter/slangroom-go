@@ -25,5 +25,7 @@
 
 !Makefile
 
+!test/*
+!slangroom-exec
 # ...even if they are in subdirectories
 !*/
