@@ -1,3 +1,5 @@
+//go:generate sh -c "wget https://github.com/dyne/slangroom-exec/releases/latest/download/slangroom-exec-$(uname)-$(uname -m) -O ./slangroom-exec && chmod +x ./slangroom-exec"
+
 package slangroom
 
 import (
@@ -12,7 +14,7 @@ import (
 	"github.com/amenzhinsky/go-memexec"
 )
 
-// Embedding Zenroom binary using go:embed
+// Embedding Slangroom binary using go:embed
 //
 //go:embed slangroom-exec
 var slangroomBinary []byte
