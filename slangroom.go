@@ -1,4 +1,5 @@
-//go:generate sh -c "wget https://github.com/dyne/slangroom-exec/releases/latest/download/slangroom-exec-$(uname)-$(uname -m) -O ./slangroom-exec && chmod +x ./slangroom-exec"
+//go:build !generate
+// +build !generate
 
 package slangroom
 
@@ -10,16 +11,23 @@ import (
 
 	b64 "encoding/base64"
 
+	_ "embed"
+
 	"github.com/amenzhinsky/go-memexec"
 )
+
+// Embedding Slangroom binary using go:embed
+//
+//go:embed slangroom-exec
+var slangroomBinary []byte
 
 type SlangResult struct {
 	Output string
 	Logs   string
 }
 
+// SlangroomExec executes the Slangroom binary with the provided parameters
 func SlangroomExec(conf string, contract string, data string, keys string, extra string, context string) (SlangResult, bool) {
-
 	// Fail if the binary has not been embedded
 	if len(slangroomBinary) == 0 {
 		log.Fatal("Error: slangroom-exec binary is not embedded. Please run `go generate` to download and embed the binary.")
