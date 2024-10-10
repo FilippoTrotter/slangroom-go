@@ -13,8 +13,6 @@ import (
 	"github.com/amenzhinsky/go-memexec"
 )
 
-var slangroomBinary []byte
-
 type SlangResult struct {
 	Output string
 	Logs   string

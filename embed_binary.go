@@ -1,5 +1,6 @@
-//go:build generate
-// +build generate
+// embed_binary.go
+//go:build !generate
+// +build !generate
 
 package slangroom
 
