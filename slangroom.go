@@ -3,7 +3,6 @@
 package slangroom
 
 import (
-	_ "embed"
 	"fmt"
 	"io"
 	"log"
@@ -14,9 +13,6 @@ import (
 	"github.com/amenzhinsky/go-memexec"
 )
 
-// Embedding Slangroom binary using go:embed
-//
-//go:embed slangroom-exec
 var slangroomBinary []byte
 
 type SlangResult struct {
@@ -25,6 +21,12 @@ type SlangResult struct {
 }
 
 func SlangroomExec(conf string, contract string, data string, keys string, extra string, context string) (SlangResult, bool) {
+
+	// Fail if the binary has not been embedded
+	if len(slangroomBinary) == 0 {
+		log.Fatal("Error: slangroom-exec binary is not embedded. Please run `go generate` to download and embed the binary.")
+	}
+
 	exec, err := memexec.New(slangroomBinary)
 	if err != nil {
 		log.Fatalf("Failed to load Slangroom executable from memory: %v", err)
